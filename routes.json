@@ -1,0 +1,7 @@
+{
+    "/videos/list": "/videos",
+    "/videos/get/:id": "/videos/:id",
+    "/videos/create": "/videos",
+    "/videos/update/:id": "/videos/:id",
+    "/videos/delete/:id": "/videos/:id"
+}

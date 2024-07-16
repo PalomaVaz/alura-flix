@@ -1,0 +1,61 @@
+.formulario {
+    width: 100%;
+    background-color: black;
+    padding-bottom: 20px;
+    padding-top: 71px;
+    color: #FFFFFF;
+}
+
+.cabecalhoFormulario h1 {
+    font-size: 3.75rem;
+    font-weight: 900;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 15px;
+    margin: 0;
+}
+
+.cabecalhoFormulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cabecalhoFormulario p {
+    font-size: 1.25rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 10px;
+    text-transform: uppercase;
+}
+
+.sessaoCampos h2 {
+    font-size: 2.25rem ;
+    font-weight: 600;
+    font-family: 'Source Sans 3';
+    margin: 0;
+    padding-bottom: 60px;
+}
+
+.sessaoCampos {
+    padding-left: 134px;
+    padding-right: 134px;
+    padding-top: 47px;
+    padding-bottom: 71px;
+}
+
+.campos {
+    display: flex;
+    flex-direction: wrap;
+    flex-wrap: wrap;
+    gap: 30px;
+    flex-shrink: auto;
+}
+
+.botoesFormulario {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding-top: 60px;
+}

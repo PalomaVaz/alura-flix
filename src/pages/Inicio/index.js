@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Banner from "../../componentes/Banner";
 import Categoria from "../../componentes/Categoria";
+import ModalEditar from "../../componentes/ModalEditar";
 
 function Inicio() {
     const [selectedVideo, setSelectedVideo] = useState({
@@ -12,38 +13,103 @@ function Inicio() {
     });
 
     const [videos, setVideos] = useState([]);
+    const [videoEdicao, setVideoEdicao] = useState(null);
 
     useEffect(() => {
-        fetch('https://my-json-server.typicode.com/PalomaVaz/aluraflix-api/videos')
+        fetch('http://localhost:3000/videos')
             .then(resposta => resposta.json())
             .then(dados => {
                 setVideos(dados)
             })
     }, [])
 
-    console.log(videos)
+    async function aoDeletar(id) { 
+      setVideos(videos.filter(v => v.id !== id));
+      try {
+        await fetch(
+          `http://localhost:3000/videos/${id}`,
+          {
+            method: "DELETE"
+          }
+        );
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    const aoSalvar = async (video) => {
+      try {
+        await fetch(
+          `http://localhost:3000/videos/${video.id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              titulo: video.titulo,
+              descricao: video.descricao,
+              imagem: video.imagem,
+              url: video.url,
+              categoria: video.categoria
+            }),
+          }
+        );
+      } catch (error) {
+        console.log(error);
+        alert(error.message)
+      }
+    };
 
     function verVideo(id) {
       setSelectedVideo(videos.find(v => v.id === id))
     }
 
+    function editarVideo(video) {
+      setVideoEdicao(video)
+    }
+
+    const categoria = {
+      frontEnd: "Front-End",
+      backEnd: "Back-End",
+      mobile: "Mobile",
+    }
+
+    const cores = {
+      "Front-End": "#6BD1FF",
+      "Back-End": "#00C86F",
+      "Mobile": "#FFBA05"
+    }
+
   return (
     <div>
-      <Banner video={selectedVideo}/>
+      <Banner video={selectedVideo} cores={cores}/>
       <Categoria 
-        videos={videos.filter(video => video.categoria === "Front-End")} 
-        categoria={{nome:"Front-End", cor:"#6BD1FF"}}
+        videos={videos?.filter(v => v.categoria === categoria.frontEnd)} 
+        categoria={{nome: categoria.frontEnd, cor: cores[categoria.frontEnd]}}
         verVideo={verVideo}
+        aoDeletar={aoDeletar}
+        aoEditar={editarVideo}
       />
       <Categoria 
-        videos={videos.filter(video => video.categoria === "Back-End")} 
-        categoria={{nome:"Back-End", cor:"#00C86F"}}
+        videos={videos?.filter(v => v.categoria === categoria.backEnd)} 
+        categoria={{nome: categoria.backEnd, cor: cores[categoria.backEnd]}}
         verVideo={verVideo}
+        aoDeletar={aoDeletar}
+        aoEditar={editarVideo}
       />
       <Categoria 
-        videos={videos.filter(video => video.categoria === "Mobile")} 
-        categoria={{nome:"Mobile", cor:"#FFBA05"}}
+        videos={videos?.filter(v => v.categoria === categoria.mobile)} 
+        categoria={{nome:categoria.mobile, cor: cores[categoria.mobile]}}
         verVideo={verVideo}
+        aoDeletar={aoDeletar}
+        aoEditar={editarVideo}
+      />
+      <ModalEditar
+        video={videoEdicao}
+        aoSalvar={aoSalvar}
+        aoFecharModal={() => setVideoEdicao(null)}
+        categorias={Object.keys(cores)} 
       />
     </div>
   )

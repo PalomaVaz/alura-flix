@@ -3,7 +3,7 @@ import './Categoria.css'
 
 function Categoria({ videos, categoria, verVideo, aoDeletar, aoEditar }) {
     return (
-        (videos.length > 0) && <section className="categoria">
+        (videos?.length > 0) && <section className="categoria">
             <h3 style={{ backgroundColor: categoria.cor }}>
                 {categoria.nome}
             </h3>

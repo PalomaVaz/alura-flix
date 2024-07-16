@@ -1,11 +1,11 @@
 import './banner.css';
 
-function Banner({video}) {
+function Banner({video , cores}) {
     return (
       <div className='banner-container' style={{backgroundImage: `url("${video.imagem}")`}}>
         <div className='banner-overlay'>
             <div className='banner-detalhes'>
-                <div className='banner-categoria'>{video.categoria}</div>
+                <div className='banner-categoria' style={{background: `${cores[video.categoria]}`}}>{video.categoria}</div>
                 <div className='banner-titulo'>{video.titulo}</div>
                 <div className='banner-descricao'>{video.descricao}</div>
             </div>

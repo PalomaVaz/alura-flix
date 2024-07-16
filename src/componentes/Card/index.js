@@ -16,7 +16,7 @@ function Card({ video, verVideo, aoDeletar, aoEditar }) {
                     <img src={deletar} alt='Deletar'/>
                     <p>DELETAR</p>
                 </div>
-                <div className="botao_card" onClick={() => aoEditar(video.id)}>
+                <div className="botao_card" onClick={() => aoEditar(video)}>
                     <img src={editar} alt='Editar'/>
                     <p>EDITAR</p>
                 </div>

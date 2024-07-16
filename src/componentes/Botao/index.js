@@ -10,3 +10,10 @@ const Botao = ({url, children}) => {
 }
 
 export default Botao
+
+export const BotaoFormulario = ({type, children, onClick}) => {
+    const classeBotao = type === 'submit' ? "botao" : "botao2";
+    return (
+        <button className={classeBotao} type={type} onClick={onClick}>{children}</button> 
+    )
+}

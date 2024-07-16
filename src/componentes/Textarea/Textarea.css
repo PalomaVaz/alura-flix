@@ -1,0 +1,26 @@
+.textarea {
+    font-family: 'Source Sans 3';
+    font-weight: 600;
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+}
+
+.campoInput {
+    padding: 10px;
+    padding-right: 2px;
+    border: 3px solid #262626;
+    border-radius: 10px;
+    background-color: transparent;
+    color:  #A5A5A5;
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-family: 'Source Sans 3';
+    outline: 0;
+}
+
+.campoInput:focus {
+    border-color: #2271D1;
+}
